@@ -36,7 +36,7 @@ Now, complete the build plugins section with a new plugin declaration. It should
 			<plugin>
 				<groupId>fr.dgrandemange</groupId>
 				<artifactId>txnmgrflow-docgen-maven-plugin</artifactId>
-				<version>0.0.1</version>
+				<version>x.y.z</version>
 				<configuration>
 					<!-- 
 						"graphVizDotCmdPath" [REQUIRED] : full path to the GrapViz dot command

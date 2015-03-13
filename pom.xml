@@ -7,6 +7,28 @@
 	<packaging>maven-plugin</packaging>
 	<name>Transaction manager flow doc generator plugin</name>
 
+	<url>https://github.com/dgrandemange/txnmgrflow-docgen-maven-plugin</url>
+
+	<scm>
+		<developerConnection>scm:git:ssh://git@github.com/dgrandemange/txnmgrflow-docgen-maven-plugin.git</developerConnection>
+		<connection>scm:git:ssh://git@github.com/dgrandemange/txnmgrflow-docgen-maven-plugin.git</connection>
+		<url>scm:git:ssh://git@github.com/dgrandemange/txnmgrflow-docgen-maven-plugin.git</url>
+	</scm>
+
+	<distributionManagement>
+		<!-- To deploy as a snapshot: > mvn -DaltDeploymentRepository=snapshot-repo::default::file:../dgrandemange-mvn-repo/snapshots 
+			deploy To deploy as a release : > mvn -DaltDeploymentRepository=repo::default::file:../dgrandemange-mvn-repo/releases 
+			deploy -->
+		<repository>
+			<id>repo</id>
+			<url>https://github.com/dgrandemange/dgrandemange-mvn-repo/raw/master/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot-repo</id>
+			<url>https://github.com/dgrandemange/dgrandemange-mvn-repo/raw/master/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<properties>
 		<jpos-workflow-commons.version>1.0.4</jpos-workflow-commons.version>
 		<maven-plugin-api.version>2.0</maven-plugin-api.version>
