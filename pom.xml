@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fr.dgrandemange</groupId>
+	<artifactId>txnmgrflow-docgen-maven-plugin</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>maven-plugin</packaging>
+	<name>Transaction manager flow doc generator plugin</name>
+
+	<properties>
+		<jpos-workflow-commons.version>1.0.4</jpos-workflow-commons.version>
+		<maven-plugin-api.version>2.0</maven-plugin-api.version>
+		<classworlds.version>1.1</classworlds.version>
+		<maven-artifact.version>3.2.5</maven-artifact.version>
+		
+		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>dgrandemange-mvn-repo-releases</id>
+			<name>dgrandemange GitHub Maven Repository releases</name>
+			<url>https://raw.githubusercontent.com/dgrandemange/dgrandemange-mvn-repo/master/releases/</url>
+		</repository>
+
+		<repository>
+			<id>dgrandemange-mvn-repo-snapshots</id>
+			<name>dgrandemange GitHub Maven Repository snapshots</name>
+			<url>https://raw.githubusercontent.com/dgrandemange/dgrandemange-mvn-repo/master/snapshots/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>${maven-plugin-api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>classworlds</groupId>
+			<artifactId>classworlds</artifactId>
+			<version>${classworlds.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-artifact</artifactId>
+			<version>${maven-artifact.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jpos.jposext</groupId>
+			<artifactId>jpos-workflow-commons</artifactId>
+			<version>${jpos-workflow-commons.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
