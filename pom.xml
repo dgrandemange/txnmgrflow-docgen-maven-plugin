@@ -30,7 +30,7 @@
 	</distributionManagement>
 
 	<properties>
-		<jpos-workflow-commons.version>1.0.4</jpos-workflow-commons.version>
+		<txnmgr-workflow-commons.version>2.0.0-SNAPSHOT</txnmgr-workflow-commons.version>
 		<maven-plugin-api.version>2.0</maven-plugin-api.version>
 		<classworlds.version>1.1</classworlds.version>
 		<maven-artifact.version>3.2.5</maven-artifact.version>
@@ -72,9 +72,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.jpos.jposext</groupId>
-			<artifactId>jpos-workflow-commons</artifactId>
-			<version>${jpos-workflow-commons.version}</version>
+			<groupId>fr.dgrandemange</groupId>
+			<artifactId>txnmgr-workflow-commons</artifactId>
+			<version>${txnmgr-workflow-commons.version}</version>
 		</dependency>
 
 	</dependencies>

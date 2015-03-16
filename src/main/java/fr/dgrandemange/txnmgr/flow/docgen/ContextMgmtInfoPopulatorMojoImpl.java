@@ -12,9 +12,10 @@ import java.util.Map.Entry;
 import org.apache.maven.plugin.logging.Log;
 import org.jpos.jposext.ctxmgmt.annotation.UpdateContextRule;
 import org.jpos.jposext.ctxmgmt.annotation.UpdateContextRules;
-import org.jpos.jposext.jposworkflow.model.ParticipantInfo;
-import org.jpos.jposext.jposworkflow.model.SubFlowInfo;
-import org.jpos.jposext.jposworkflow.service.support.ContextMgmtInfoPopulatorAbstractImpl;
+
+import fr.dgrandemange.txnmgrworkflow.model.ParticipantInfo;
+import fr.dgrandemange.txnmgrworkflow.model.SubFlowInfo;
+import fr.dgrandemange.txnmgrworkflow.service.support.ContextMgmtInfoPopulatorAbstractImpl;
 
 /**
  * A context management info populator using reflection to discover annotations

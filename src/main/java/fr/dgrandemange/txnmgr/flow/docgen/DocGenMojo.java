@@ -22,15 +22,16 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.classworlds.ClassRealm;
 import org.codehaus.classworlds.ClassWorld;
 import org.codehaus.classworlds.DuplicateRealmException;
-import org.jpos.jposext.jposworkflow.model.Graph;
-import org.jpos.jposext.jposworkflow.service.IDOTLabelFactory;
-import org.jpos.jposext.jposworkflow.service.support.FacadeImpl;
-import org.jpos.jposext.jposworkflow.service.support.GraphConverterServiceImpl;
-import org.jpos.jposext.jposworkflow.service.support.LabelFactoryVelocityImpl;
-import org.jpos.jposext.jposworkflow.service.support.TooltipFactoryVelocityImpl;
 
 import com.developpez.adiguba.shell.ProcessConsumer;
 import com.developpez.adiguba.shell.Shell;
+
+import fr.dgrandemange.txnmgrworkflow.model.Graph;
+import fr.dgrandemange.txnmgrworkflow.service.IDOTLabelFactory;
+import fr.dgrandemange.txnmgrworkflow.service.support.FacadeImpl;
+import fr.dgrandemange.txnmgrworkflow.service.support.GraphConverterServiceImpl;
+import fr.dgrandemange.txnmgrworkflow.service.support.LabelFactoryVelocityImpl;
+import fr.dgrandemange.txnmgrworkflow.service.support.TooltipFactoryVelocityImpl;
 
 /**
  * Transaction manager flow documentation generation task<br>
