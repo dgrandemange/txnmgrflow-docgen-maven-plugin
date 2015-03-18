@@ -1,13 +1,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>fr.dgrandemange</groupId>
+	<groupId>com.github.dgrandemange</groupId>
 	<artifactId>txnmgrflow-docgen-maven-plugin</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
-	<name>Transaction manager flow doc generator plugin</name>
 
+	<name>Transaction manager flow doc generator plugin</name>
+	<description>A maven plugin that generate transaction flow documentation from transaction configuration files</description>
 	<url>https://github.com/dgrandemange/txnmgrflow-docgen-maven-plugin</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Damien GRANDEMANGE</name>
+			<email>damien.grandemange@gmail.com</email>
+			<organization>GitHub</organization>
+			<organizationUrl>https://github.com/dgrandemange</organizationUrl>
+		</developer>
+	</developers>
 
 	<scm>
 		<developerConnection>scm:git:ssh://git@github.com/dgrandemange/txnmgrflow-docgen-maven-plugin.git</developerConnection>
@@ -15,42 +32,14 @@
 		<url>scm:git:ssh://git@github.com/dgrandemange/txnmgrflow-docgen-maven-plugin.git</url>
 	</scm>
 
-	<distributionManagement>
-		<!-- To deploy as a snapshot: > mvn -DaltDeploymentRepository=snapshot-repo::default::file:../dgrandemange-mvn-repo/snapshots 
-			deploy To deploy as a release : > mvn -DaltDeploymentRepository=repo::default::file:../dgrandemange-mvn-repo/releases 
-			deploy -->
-		<repository>
-			<id>repo</id>
-			<url>https://github.com/dgrandemange/dgrandemange-mvn-repo/raw/master/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>snapshot-repo</id>
-			<url>https://github.com/dgrandemange/dgrandemange-mvn-repo/raw/master/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
-
 	<properties>
-		<txnmgr-workflow-commons.version>2.0.0-SNAPSHOT</txnmgr-workflow-commons.version>
+		<txnmgr-workflow-commons.version>2.0.1</txnmgr-workflow-commons.version>
 		<maven-plugin-api.version>2.0</maven-plugin-api.version>
 		<classworlds.version>1.1</classworlds.version>
 		<maven-artifact.version>3.2.5</maven-artifact.version>
-		
+
 		<maven-compiler-plugin.version>2.5.1</maven-compiler-plugin.version>
 	</properties>
-
-	<repositories>
-		<repository>
-			<id>dgrandemange-mvn-repo-releases</id>
-			<name>dgrandemange GitHub Maven Repository releases</name>
-			<url>https://raw.githubusercontent.com/dgrandemange/dgrandemange-mvn-repo/master/releases/</url>
-		</repository>
-
-		<repository>
-			<id>dgrandemange-mvn-repo-snapshots</id>
-			<name>dgrandemange GitHub Maven Repository snapshots</name>
-			<url>https://raw.githubusercontent.com/dgrandemange/dgrandemange-mvn-repo/master/snapshots/</url>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -72,7 +61,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>fr.dgrandemange</groupId>
+			<groupId>com.github.dgrandemange</groupId>
 			<artifactId>txnmgr-workflow-commons</artifactId>
 			<version>${txnmgr-workflow-commons.version}</version>
 		</dependency>
@@ -92,5 +81,141 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+
+		<profile>
+			<!--
+				Maven central deployment profile
+				================================
+				
+				> mvn clean deploy -P oss_rh
+				
+				With "autoReleaseAfterClose" property set to "false" :
+				do
+					> mvn nexus-staging:release -P oss_rh
+				to release, or
+					> mvn nexus-staging:drop -P oss_rh
+				to drop
+				
+				More info here : http://central.sonatype.org/pages/apache-maven.html#nexus-staging-maven-plugin-for-deployment-and-release
+			 -->
+
+			<id>oss_rh</id>
+			
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+
+			<distributionManagement>
+				<snapshotRepository>
+					<id>ossrh</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+				</snapshotRepository>
+				<repository>
+					<id>ossrh</id>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
+			</distributionManagement>
+
+			<build>
+				<plugins>
+
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.5</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>false</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+								<configuration>
+									<passphraseServerId>${gpg.keyname}</passphraseServerId>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>2.2.1</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>2.9.1</version>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+			<!--
+				Local Github dgrandemange-mvn-repo deployment profile
+				=====================================================
+				
+				You must have dgrandemange-mvn-repo project locally checked out 
+				
+				To deploy as a snapshot :
+				> mvn -DaltDeploymentRepository=snapshot-repo::default::file:../dgrandemange-mvn-repo/snapshots	deploy
+
+				To deploy as a release :
+				> mvn -DaltDeploymentRepository=repo::default::file:../dgrandemange-mvn-repo/releases deploy
+			 
+			 	Don't forget to commit/push updates on dgrandemange-mvn-repo
+			-->
+			<id>github_rh</id>
+
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+
+			<distributionManagement>
+				<repository>
+					<id>repo</id>
+					<url>https://github.com/dgrandemange/dgrandemange-mvn-repo/raw/master/releases</url>
+				</repository>
+				<snapshotRepository>
+					<id>snapshot-repo</id>
+					<url>https://github.com/dgrandemange/dgrandemange-mvn-repo/raw/master/snapshots</url>
+				</snapshotRepository>
+			</distributionManagement>
+		</profile>
+		
+	</profiles>
 
 </project>

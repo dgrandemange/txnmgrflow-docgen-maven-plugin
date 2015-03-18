@@ -10,9 +10,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.maven.plugin.logging.Log;
-import org.jpos.jposext.ctxmgmt.annotation.UpdateContextRule;
-import org.jpos.jposext.ctxmgmt.annotation.UpdateContextRules;
 
+import fr.dgrandemange.ctxmgmt.annotation.UpdateContextRule;
 import fr.dgrandemange.txnmgrworkflow.model.ParticipantInfo;
 import fr.dgrandemange.txnmgrworkflow.model.SubFlowInfo;
 import fr.dgrandemange.txnmgrworkflow.service.support.ContextMgmtInfoPopulatorAbstractImpl;
@@ -61,8 +60,8 @@ public class ContextMgmtInfoPopulatorMojoImpl extends
 
 						Class<? extends Annotation> annotationType = annotation
 								.annotationType();
-						if (UpdateContextRules.class.getName().equals(
-								annotationType.getName())) {
+						if ("UpdateContextRules".equals(
+								annotationType.getSimpleName())) {
 							try {
 								Method method_value = annotationType.getMethod(
 										"value", new Class[] {});
