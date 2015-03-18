@@ -12,21 +12,7 @@ Steps to add this plugin in your Maven project :
 ------------------------------------------------
 You shall add the following snippets to your pom.xml.
 
-First, add the Maven plugin repository where this plugin releases are available :
-
-	<pluginRepositories>
-		
-		<!-- ... your specific plugin repositories if there are any ... -->
-		
-		<pluginRepository>
-			<id>dgrandemange-mvn-repo-releases</id>
-			<name>dgrandemange GitHub Maven Repository releases</name>
-			<url>https://raw.githubusercontent.com/dgrandemange/dgrandemange-mvn-repo/master/releases/</url>			
-		</pluginRepository>
-		
-	</pluginRepositories>
-
-Now, complete the build plugins section with a new plugin declaration. It should eventually look like this :
+Complete the build plugins section with a new plugin declaration. It should eventually look like this :
 
 	<build>
 		<plugins>
