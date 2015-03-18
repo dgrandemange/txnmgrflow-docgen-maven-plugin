@@ -20,7 +20,7 @@ Complete the build plugins section with a new plugin declaration. It should even
 		  <!-- ... -->
 		  
 			<plugin>
-				<groupId>fr.dgrandemange</groupId>
+				<groupId>com.github.dgrandemange</groupId>
 				<artifactId>txnmgrflow-docgen-maven-plugin</artifactId>
 				<version>x.y.z</version>
 				<configuration>
